@@ -127,6 +127,20 @@ namespace TennisByTddTest
             score.Should().Be("Thor adv");
         }
 
+        [Test]
+        public void Player2_Win()
+        {
+            var numberOfTime = 3;
+
+            Player1Hit(tennis, numberOfTime);
+            Player2Hit(tennis, numberOfTime);
+            tennis.Player2Hit();
+            tennis.Player2Hit();
+            var score = tennis.Score();
+
+            score.Should().Be("Thor win");
+        }
+
         private static void Player1Hit(Tennis tennis, int numberOfTimes)
         {
             for (int i = 0; i < numberOfTimes; i++)

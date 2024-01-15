@@ -36,9 +36,11 @@
 
             if (player1Score >= 3 && player2Score >= 3) 
             {
-                if (player1Score > player2Score)
-                    return $"{player1Name} adv";
-                return $"{player2Name} adv";
+                if (Math.Abs(player1Score - player2Score) == 1)
+                {
+                    return player1Score > player2Score ? $"{player1Name} adv" : $"{player2Name} adv";
+                }
+                return player1Score > player2Score ? $"{player1Name} win" : $"{player2Name} win";
             }
             return $"{scoreMap[player1Score]} {scoreMap[player2Score]}";
         }
