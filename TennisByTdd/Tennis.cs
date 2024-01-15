@@ -17,17 +17,17 @@
             player1Score += 1;
         }
 
-        public string Score()
-        {
-            if (player1Score > 0 || player2Score > 0) 
-                return $"{scoreMap[player1Score]} {scoreMap[player2Score]}";
-
-            return "love all";
-        }
-
         public void Player2Hit()
         {
             player2Score += 1;
+        }
+
+        public string Score()
+        {
+            if (player1Score == player2Score)
+                return $"{scoreMap[player1Score]} all";
+
+            return $"{scoreMap[player1Score]} {scoreMap[player2Score]}";
         }
     }
 }
