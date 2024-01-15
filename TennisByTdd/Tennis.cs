@@ -1,9 +1,10 @@
 ﻿namespace TennisByTdd
 {
-    public class Tennis
+    public class Tennis(string player1Name)
     {
         private int player1Score;
         private int player2Score;
+        private readonly string player1Name = player1Name;
         private readonly Dictionary<int, string> scoreMap = new()
         {
             [0] = "love",
@@ -32,6 +33,11 @@
                 return $"{scoreMap[player1Score]} all";
             }
 
+            if (player1Score >= 3 && player2Score >= 3) 
+            {
+                if (player1Score > player2Score)
+                    return $"{player1Name} adv";
+            }
             return $"{scoreMap[player1Score]} {scoreMap[player2Score]}";
         }
     }
