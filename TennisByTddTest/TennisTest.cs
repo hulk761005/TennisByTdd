@@ -27,11 +27,28 @@ namespace TennisByTddTest
         public void Player1_Hit_The_Point_Twice()
         {
             var tennis = new Tennis();
-            tennis.Player1Hit();
-            tennis.Player1Hit();
+            Player1Hit(tennis, 2);
             var score = tennis.Score();
 
             score.Should().Be("thirty love");
+        }
+
+        [Test]
+        public void Player1_Hit_The_Point_Three_Times()
+        {
+            var tennis = new Tennis();
+            Player1Hit(tennis, 3);
+            var score = tennis.Score();
+
+            score.Should().Be("forty love");
+        }
+
+        private static void Player1Hit(Tennis tennis, int numberOfTimes)
+        {
+            for (int i = 0; i < numberOfTimes; i++)
+            {
+                tennis.Player1Hit();
+            }
         }
     }
 }
