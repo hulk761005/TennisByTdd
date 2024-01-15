@@ -5,11 +5,18 @@ namespace TennisByTddTest
 {
     public class TennisTest
     {
+        private Tennis tennis;
+        [SetUp]
+        public void SetUp() 
+        {
+            var player1Name = "Hulk";
+            var player2Name = "Thor";
+            tennis = new Tennis(player1Name, player2Name);
+        }
+
         [Test]
         public void Player1_And_Player2_Love_All()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             var score = tennis.Score();
             score.Should().Be("love all");
         }
@@ -17,8 +24,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_Hit_The_Point() 
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             tennis.Player1Hit();
             var score = tennis.Score();
 
@@ -28,8 +33,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_Hit_The_Point_Twice()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             Player1Hit(tennis, 2);
             var score = tennis.Score();
 
@@ -39,8 +42,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_Hit_The_Point_Three_Times()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             Player1Hit(tennis, 3);
             var score = tennis.Score();
 
@@ -50,8 +51,6 @@ namespace TennisByTddTest
         [Test]
         public void Player2_Hit_The_Point()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             tennis.Player2Hit();
             var score = tennis.Score();
 
@@ -61,8 +60,6 @@ namespace TennisByTddTest
         [Test]
         public void Player2_Hit_The_Point_Twice()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             var numberOfTimes = 2;
             Player2Hit(tennis, numberOfTimes);
             var score = tennis.Score();
@@ -73,8 +70,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_And_Player2_Fifteen_All() 
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             tennis.Player1Hit();
             tennis.Player2Hit();
             var score = tennis.Score();
@@ -85,8 +80,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_And_Player2_Thirty_All()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             var numberOfTime = 2;
 
             Player1Hit(tennis, numberOfTime);
@@ -99,8 +92,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_And_Player2_Deuce()
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             var numberOfTime = 3;
 
             Player1Hit(tennis, numberOfTime);
@@ -113,8 +104,6 @@ namespace TennisByTddTest
         [Test]
         public void Player1_Advantage() 
         {
-            var player1Name = "Hulk";
-            var tennis = new Tennis(player1Name);
             var numberOfTime = 3;
 
             Player1Hit(tennis, numberOfTime);
@@ -123,6 +112,19 @@ namespace TennisByTddTest
             var score = tennis.Score();
 
             score.Should().Be("Hulk adv");
+        }
+
+        [Test]
+        public void Player2_Advantage()
+        {
+            var numberOfTime = 3;
+
+            Player1Hit(tennis, numberOfTime);
+            Player2Hit(tennis, numberOfTime);
+            tennis.Player2Hit();
+            var score = tennis.Score();
+
+            score.Should().Be("Thor adv");
         }
 
         private static void Player1Hit(Tennis tennis, int numberOfTimes)
