@@ -24,8 +24,13 @@
 
         public string Score()
         {
-            if (player1Score == player2Score)
+            if (player1Score == player2Score) 
+            {
+                if (player1Score >= 3)
+                    return "deuce";
+
                 return $"{scoreMap[player1Score]} all";
+            }
 
             return $"{scoreMap[player1Score]} {scoreMap[player2Score]}";
         }
