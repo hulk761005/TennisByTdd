@@ -53,11 +53,29 @@ namespace TennisByTddTest
             score.Should().Be("love fifteen");
         }
 
+        [Test]
+        public void Player2_Hit_The_Point_Twice()
+        {
+            var tennis = new Tennis();
+            var numberOfTimes = 2;
+            Player2Hit(tennis, numberOfTimes);
+            var score = tennis.Score();
+
+            score.Should().Be("love thirty");   
+        }
+
         private static void Player1Hit(Tennis tennis, int numberOfTimes)
         {
             for (int i = 0; i < numberOfTimes; i++)
             {
                 tennis.Player1Hit();
+            }
+        }
+        private static void Player2Hit(Tennis tennis, int numberOfTimes)
+        {
+            for (int i = 0; i < numberOfTimes; i++)
+            {
+                tennis.Player2Hit();
             }
         }
     }
