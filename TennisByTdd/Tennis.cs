@@ -1,9 +1,9 @@
-﻿
-namespace TennisByTdd
+﻿namespace TennisByTdd
 {
     public class Tennis
     {
         private int player1Score;
+        private int player2Score;
         private readonly Dictionary<int, string> scoreMap = new()
         {
             [0] = "love",
@@ -19,9 +19,15 @@ namespace TennisByTdd
 
         public string Score()
         {
-            if (player1Score > 0) return $"{scoreMap[player1Score]} love";
+            if (player1Score > 0 || player2Score > 0) 
+                return $"{scoreMap[player1Score]} {scoreMap[player2Score]}";
 
             return "love all";
+        }
+
+        public void Player2Hit()
+        {
+            player2Score += 1;
         }
     }
 }
